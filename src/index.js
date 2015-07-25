@@ -22,6 +22,16 @@ module.exports = function (app, apiInstance, prefix, opts) {
 
   let cm = callMethod(apiInstance, opts);
   endpointRouter.all('/:method/:jsonArgs', cm);
+  endpointRouter.all('/', function *(next) {
+    let docs = {};
+    for (let k of Object.keys(apiInstance)) {
+      docs[k] = apiInstance[k].doc || "[No documentation]";
+    }
+    this.body = JSON.stringify({
+      availableMethods: docs,
+    });
+    yield next;
+  });
   app.use(endpointRouter.routes());
   app.use(endpointRouter.allowedMethods());
 

@@ -41,12 +41,16 @@ module.exports = function (instance, opts) {
     var method = instance[this.params.method];
     var jsonArgs = this.params.jsonArgs;
     var args;
-    if (!jsonArgs || jsonArgs == 'help' || jsonArgs == 'doc') {
+    if (!jsonArgs || jsonArgs === 'help' || jsonArgs === 'doc') {
       this.body = { help: method.doc || "[No documentation available]" };
     } else {
       var argsOk = true;
       try {
-        args = JSON.parse(jsonArgs);
+        if (jsonArgs === 'undefined') {
+          args = undefined;
+        } else {
+          args = JSON.parse(jsonArgs);
+        }
       } catch (e) {
         argsOk = false;
         this.body = { err: "Problem with JSON arguments Error: " + e };

@@ -1,6 +1,6 @@
 {
   "name": "@exponent/koa-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "API middleware for koa",
   "main": "build/index.js",
   "scripts": {

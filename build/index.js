@@ -1,5 +1,7 @@
 'use strict';
 
+var _Object$keys = require('babel-runtime/core-js/object/keys')['default'];
+
 var _ = require('lodash-node');
 var router = require('koa-router');
 
@@ -22,11 +24,18 @@ module.exports = function (app, apiInstance, prefix, opts) {
 
   var endpointRouter = router(opts);
 
-  // endpointRouter.all('/api/:method/:jsonArgs', api.callMethod);
-  // let endpointRouter = router({ prefix: '/--' });
-
   var cm = callMethod(apiInstance, opts);
   endpointRouter.all('/:method/:jsonArgs', cm);
+  endpointRouter.all('/', function* (next) {
+    var docs = {};
+    for (var k of _Object$keys(apiInstance)) {
+      docs[k] = apiInstance[k].doc || "[No documentation]";
+    }
+    this.body = JSON.stringify({
+      availableMethods: docs
+    });
+    yield next;
+  });
   app.use(endpointRouter.routes());
   app.use(endpointRouter.allowedMethods());
 

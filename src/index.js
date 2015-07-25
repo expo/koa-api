@@ -20,9 +20,6 @@ module.exports = function (app, apiInstance, prefix, opts) {
 
   let endpointRouter = router(opts);
 
-  // endpointRouter.all('/api/:method/:jsonArgs', api.callMethod);
-  // let endpointRouter = router({ prefix: '/--' });
-
   let cm = callMethod(apiInstance, opts);
   endpointRouter.all('/:method/:jsonArgs', cm);
   app.use(endpointRouter.routes());

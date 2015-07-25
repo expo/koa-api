@@ -11,7 +11,7 @@ module.exports = function (app, apiInstance, prefix, opts) {
   if (_.isObject(prefix) && !opts) {
     opts = prefix;
   } else if (!prefix) {
-    prefix = '/';
+    prefix = '';
   }
 
   if (!opts) {

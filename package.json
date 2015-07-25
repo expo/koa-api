@@ -1,0 +1,25 @@
+{
+  "name": "koa-api",
+  "version": "1.0.0",
+  "description": "API middleware for koa",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exponentjs/koa-api.git"
+  },
+  "keywords": [
+    "koa",
+    "api",
+    "json",
+    "middleware"
+  ],
+  "author": "exponent.team@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exponentjs/koa-api/issues"
+  },
+  "homepage": "https://github.com/exponentjs/koa-api#readme"
+}
